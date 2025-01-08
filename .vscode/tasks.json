@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "dub",
+			"run": true,
+			"cwd": "c:/local/d-exercise",
+			"compiler": "$current",
+			"archType": "x86_64",
+			"buildType": "$current",
+			"configuration": "$current",
+			"problemMatcher": [
+				"$dmd"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"label": "dub: Run d-exercise",
+			"detail": "dub run --compiler=ldc2.EXE -b=debug -c=application"
+		}
+	]
+}
