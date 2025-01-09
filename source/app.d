@@ -1,8 +1,14 @@
 import std.stdio;
 import std.algorithm;
+import std.string;
 
 int add(int a, int b) {
     return a + b;
+}
+
+struct Person {
+    int age;
+    string name;
 }
 
 void main() {
@@ -14,6 +20,13 @@ void main() {
     writeln("min: ", int.min);
     writeln("max: ", int.max);
     writeln("init: ", int.init);
+
+    char c = 'a';
+    wchar wc = 'π';
+    dchar dc = '好';
+    writeln(c);
+    writeln(wc);
+    writeln(dc);
 
     // 數組
     int[5] array;
@@ -29,4 +42,9 @@ void main() {
 
     // 函數
     writeln(add(1, 2));
+
+    Person person;
+    person.age = 20;
+    person.name = "Tom";
+    writeln(person);
 }

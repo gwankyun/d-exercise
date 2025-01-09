@@ -4,7 +4,7 @@
 		{
 			"type": "dub",
 			"run": true,
-			"cwd": "c:/local/d-exercise",
+			"cwd": "${workspaceFolder}",
 			"compiler": "$current",
 			"archType": "x86_64",
 			"buildType": "$current",
@@ -12,10 +12,7 @@
 			"problemMatcher": [
 				"$dmd"
 			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
+			"group": "build",
 			"label": "dub: Run d-exercise",
 			"detail": "dub run --compiler=ldc2.EXE -b=debug -c=application"
 		}
