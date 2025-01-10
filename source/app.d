@@ -1,6 +1,8 @@
 import std.stdio;
 import std.algorithm;
 import std.string;
+import std.logger;
+import core.memory; // GC.collect
 
 int add(int a, int b) {
     return a + b;
@@ -9,6 +11,35 @@ int add(int a, int b) {
 struct Person {
     int age;
     string name;
+}
+
+// 安全
+void saftFun() @safe
+{
+    info("");
+    int* p = new int;
+}
+
+// 不安全
+void unsafeFun() @system
+{
+    int* p = new int;
+    int* fiddling = p + 5;
+}
+
+// 接口安全，內部自己保證
+void memory() @trusted
+{
+    int a = 1;
+    int* b = &a;
+    auto c = b;
+    infof("c: %s", *c);
+    saftFun();
+    unsafeFun();
+
+    GC.collect(); // 手動執行回收
+    GC.disable(); // 手動關
+    GC.enable();  // 手動開
 }
 
 void main() {
@@ -47,4 +78,37 @@ void main() {
     person.age = 20;
     person.name = "Tom";
     writeln(person);
+
+    // 日誌
+    info("info");
+    warning("");
+    error("");
+    critical("");
+    // 會直接報錯
+    // fatal("");
+    infof("info: %s", "test");
+
+    // 類型轉換
+    byte b = 8;
+    short s = cast(short)b;
+    infof("byte to short: %s", s);
+
+    infof("init: %s", int.init); // 初始值
+    assert(int.init == 0);
+    infof("init: %s", double.init); // 初始值
+    // assert(double.init == double.nan);
+    infof("max: %s", int.max); // 最大
+    infof("min: %s", int.min); // 最小
+    infof("min_normal: %s", double.min_normal); // 可表示的最小值
+    infof("nan: %s", double.nan); // 非數值
+    infof("infinity: %s", double.infinity); // 極限
+    infof("dig: %s", double.dig); // 十進制精度
+    infof("mant_dig: %s", double.mant_dig); // 小數部分精度
+    infof("stringof: %s", int.stringof); // 名稱
+    auto a = 8;
+    infof("type: %s", typeid(a));
+    infof("sizeof: %s", int.sizeof);
+
+    // 內存
+    memory();
 }
