@@ -4,11 +4,13 @@ import std.string;
 import std.logger;
 import core.memory; // GC.collect
 
-int add(int a, int b) {
+int add(int a, int b)
+{
     return a + b;
 }
 
-struct Person {
+struct Person
+{
     int age;
     string name;
 }
@@ -42,7 +44,8 @@ void memory() @trusted
     GC.enable();  // 手動開
 }
 
-void main() {
+void main()
+{
     writeln("hello");
     bool t = true;
     writeln(t);
