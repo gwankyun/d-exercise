@@ -4,15 +4,42 @@ import std.string;
 import std.logger;
 import core.memory; // GC.collect
 
-int add(int a, int b)
+// 自動推導
+auto add(int a, int b)
 {
     return a + b;
+}
+
+//　默認參數
+void plot(string msg, string color = "red")
+{
+    infof("msg: %s colr: %s", msg, color);
+}
+
+void fun()
+{
+    int local = 10;
+    // 嵌套函數
+    int fun_secret()
+    {
+        local++;
+        return 0;
+    }
+    fun_secret();
+    infof("local: %s", local);
 }
 
 struct Person
 {
     int age;
     string name;
+
+    // 構造函數
+    this(int age, string name)
+    {
+        this.age = age;
+        this.name = name;
+    }
 }
 
 // 安全
@@ -80,7 +107,9 @@ void main()
     Person person;
     person.age = 20;
     person.name = "Tom";
-    writeln(person);
+    infof("person: %s", person);
+    auto jim = Person(18, "Jom");
+    infof("Jom: %s", jim);
 
     // 日誌
     info("info");
@@ -114,4 +143,9 @@ void main()
 
     // 內存
     memory();
+
+    plot("D");
+    plot("D", "blue");
+
+    fun();
 }
