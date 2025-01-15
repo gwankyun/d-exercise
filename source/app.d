@@ -40,6 +40,11 @@ struct Person
         this.age = age;
         this.name = name;
     }
+
+    static void fun(Person person)
+    {
+        infof("name: %s age: %s", person.name, person.age);
+    }
 }
 
 // 安全
@@ -71,6 +76,29 @@ void memory() @trusted
     GC.enable();  // 手動開
 }
 
+void arrayEample()
+{
+    // 靜態數組
+    int[8] arr;
+
+    // 動態數組
+    int size = 8;
+    auto darr = new int[size];
+
+    auto mdarr = new int[3][3]; // 多維數組
+
+    int[5] array;
+    writeln(array.length);
+    int[] dynamic_array;
+    dynamic_array ~= 3;
+    dynamic_array ~= 7;
+    dynamic_array ~= [ 2, 1 ];
+    writeln(dynamic_array.length);
+    writeln(dynamic_array);
+    dynamic_array = dynamic_array.remove(0);
+    writeln(dynamic_array);
+}
+
 void main()
 {
     writeln("hello");
@@ -90,16 +118,7 @@ void main()
     writeln(dc);
 
     // 數組
-    int[5] array;
-    writeln(array.length);
-    int[] dynamic_array;
-    dynamic_array ~= 3;
-    dynamic_array ~= 7;
-    dynamic_array ~= [ 2, 1 ];
-    writeln(dynamic_array.length);
-    writeln(dynamic_array);
-    dynamic_array = dynamic_array.remove(0);
-    writeln(dynamic_array);
+    arrayEample();
 
     // 函數
     writeln(add(1, 2));
@@ -108,8 +127,9 @@ void main()
     person.age = 20;
     person.name = "Tom";
     infof("person: %s", person);
-    auto jim = Person(18, "Jom");
-    infof("Jom: %s", jim);
+    auto jim = Person(18, "Jim");
+    infof("Jim: %s", jim);
+    Person.fun(jim);
 
     // 日誌
     info("info");
