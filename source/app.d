@@ -95,8 +95,17 @@ void arrayEample()
     dynamic_array ~= [ 2, 1 ];
     writeln(dynamic_array.length);
     writeln(dynamic_array);
-    dynamic_array = dynamic_array.remove(0);
-    writeln(dynamic_array);
+    // dynamic_array = dynamic_array.remove(0);
+    // writeln(dynamic_array);
+
+    assert(dynamic_array[0] == 3);
+    assert(dynamic_array[$ - 1] == 1);
+    assert(dynamic_array == [ 3, 7, 2, 1]);
+    assert(dynamic_array.length == 4);
+    // 刪除項
+    dynamic_array.length--;
+    assert(dynamic_array.length == 3);
+    assert(dynamic_array == [ 3, 7, 2 ]);
 }
 
 void main()
